@@ -4,7 +4,9 @@
 using System.Buffers;
 using System.Security.Cryptography;
 using System.Text;
+#if !COMPAT
 using Microsoft.Extensions.Options;
+#endif
 using SixLabors.ImageSharp.Web.Helpers;
 using SixLabors.ImageSharp.Web.Middleware;
 
@@ -23,20 +25,25 @@ namespace SixLabors.ImageSharp.Web.Caching
         /// Initializes a new instance of the <see cref="CacheHash"/> class.
         /// </summary>
         /// <param name="options">The middleware configuration options</param>
+#if COMPAT
+        public CacheHash(ImageSharpMiddlewareOptions options)
+        {
+            this.options = options;
+        }
+#else
         public CacheHash(IOptions<ImageSharpMiddlewareOptions> options)
         {
             this.options = options.Value;
         }
+#endif
 
         /// <inheritdoc/>
-        public string Create(string value, uint length)
+        public string Create(string value, byte length)
         {
-            Guard.MustBeBetweenOrEqualTo<uint>(length, 2, 64, nameof(length));
+            Guard.MustBeBetweenOrEqualTo<byte>(length, 2, 64, nameof(length));
 
             using (var hashAlgorithm = SHA256.Create())
             {
-                int len = (int)length;
-
                 // Concatenate the hash bytes into one long string.
                 int byteCount = Encoding.ASCII.GetByteCount(value);
                 byte[] buffer = ArrayPool<byte>.Shared.Rent(byteCount);
@@ -44,8 +51,9 @@ namespace SixLabors.ImageSharp.Web.Caching
                 byte[] hash = hashAlgorithm.ComputeHash(buffer, 0, byteCount);
                 ArrayPool<byte>.Shared.Return(buffer);
 
-                var sb = new StringBuilder(len);
-                for (int i = 0; i < len / 2; i++)
+                // PERF: Use length to allocate correct buffer size for StringBuilder.
+                var sb = new StringBuilder(length);
+                for (int i = 0; i < length / 2; i++)
                 {
                     sb.Append(hash[i].ToString("X2"));
                 }

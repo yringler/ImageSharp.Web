@@ -96,7 +96,7 @@ namespace SixLabors.ImageSharp.Web
         /// <paramref name="value"/> is greater than the maximum value.
         /// </exception>
         public static void MustBeLessThan<TValue>(TValue value, TValue max, string parameterName)
-                    where TValue : IComparable<TValue>
+            where TValue : IComparable<TValue>
         {
             if (value.CompareTo(max) >= 0)
             {
@@ -224,42 +224,6 @@ namespace SixLabors.ImageSharp.Web
             if (value)
             {
                 throw new ArgumentException(message, parameterName);
-            }
-        }
-
-        /// <summary>
-        /// Verifies, that the `target` span has the length of 'minLength', or longer.
-        /// </summary>
-        /// <typeparam name="T">The element type of the spans</typeparam>
-        /// <param name="value">The target span.</param>
-        /// <param name="minLength">The minimum length.</param>
-        /// <param name="parameterName">The name of the parameter that is to be checked.</param>
-        /// <exception cref="ArgumentException">
-        /// The length of <paramref name="value"/> is less than <paramref name="minLength"/>.
-        /// </exception>
-        public static void MustBeSizedAtLeast<T>(T[] value, int minLength, string parameterName)
-        {
-            if (value.Length < minLength)
-            {
-                throw new ArgumentException($"The size must be at least {minLength}.", parameterName);
-            }
-        }
-
-        /// <summary>
-        /// Verifies, that the `target` span has the length of 'minLength', or longer.
-        /// </summary>
-        /// <typeparam name="T">The element type of the spans</typeparam>
-        /// <param name="value">The target span.</param>
-        /// <param name="minLength">The minimum length.</param>
-        /// <param name="parameterName">The name of the parameter that is to be checked.</param>
-        /// <exception cref="ArgumentException">
-        /// The length of <paramref name="value"/> is less than <paramref name="minLength"/>.
-        /// </exception>
-        public static void MustBeSizedAtLeast<T>(ReadOnlySpan<T> value, int minLength, string parameterName)
-        {
-            if (value.Length < minLength)
-            {
-                throw new ArgumentException($"The size must be at least {minLength}.", parameterName);
             }
         }
     }

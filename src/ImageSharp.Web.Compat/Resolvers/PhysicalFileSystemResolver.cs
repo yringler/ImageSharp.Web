@@ -5,11 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Options;
+using System.Web;
+using System.Web.Hosting;
 using SixLabors.ImageSharp.Web.Helpers;
 using SixLabors.ImageSharp.Web.Memory;
 using SixLabors.ImageSharp.Web.Middleware;
@@ -21,11 +18,6 @@ namespace SixLabors.ImageSharp.Web.Resolvers
     /// </summary>
     public class PhysicalFileSystemResolver : IImageResolver
     {
-        /// <summary>
-        /// The file provider abstraction.
-        /// </summary>
-        private readonly IFileProvider fileProvider;
-
         /// <summary>
         /// The buffer manager.
         /// </summary>
@@ -39,21 +31,17 @@ namespace SixLabors.ImageSharp.Web.Resolvers
         /// <summary>
         /// Initializes a new instance of the <see cref="PhysicalFileSystemResolver"/> class.
         /// </summary>
-        /// <param name="environment">The <see cref="IHostingEnvironment"/> used by this middleware</param>
         /// <param name="bufferManager">An <see cref="IBufferManager"/> instance used to allocate arrays transporting encoded image data</param>
         /// <param name="options">The middleware configuration options</param>
         public PhysicalFileSystemResolver(
-            IHostingEnvironment environment,
             IBufferManager bufferManager,
-            IOptions<ImageSharpMiddlewareOptions> options)
+            ImageSharpMiddlewareOptions options)
         {
-            Guard.NotNull(environment, nameof(environment));
             Guard.NotNull(bufferManager, nameof(bufferManager));
             Guard.NotNull(options, nameof(options));
 
-            this.fileProvider = environment.WebRootFileProvider;
             this.bufferManager = bufferManager;
-            this.options = options.Value;
+            this.options = options;
         }
 
         /// <inheritdoc/>
@@ -72,7 +60,7 @@ namespace SixLabors.ImageSharp.Web.Resolvers
         public async Task<IByteBuffer> ResolveImageAsync(HttpContext context)
         {
             // Path has already been correctly parsed before here.
-            IFileInfo fileInfo = this.fileProvider.GetFileInfo(context.Request.Path.Value);
+            var fileInfo = new FileInfo(HostingEnvironment.MapPath(context.Request.Path));
             IByteBuffer buffer;
 
             // Check to see if the file exists.
@@ -81,7 +69,7 @@ namespace SixLabors.ImageSharp.Web.Resolvers
                 return null;
             }
 
-            using (Stream stream = fileInfo.CreateReadStream())
+            using (Stream stream = fileInfo.OpenRead())
             {
                 // Buffer is returned to the pool in the middleware
                 buffer = this.bufferManager.Allocate((int)stream.Length);

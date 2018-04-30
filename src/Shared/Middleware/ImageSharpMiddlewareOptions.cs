@@ -2,7 +2,11 @@
 // Licensed under the Apache License, Version 2.0.
 
 using System;
+#if COMPAT
+using System.Web;
+#else
 using Microsoft.AspNetCore.Http;
+#endif
 using SixLabors.ImageSharp.Web.Commands;
 using SixLabors.ImageSharp.Web.Processors;
 using SixLabors.ImageSharp.Web.Resolvers;
@@ -32,7 +36,7 @@ namespace SixLabors.ImageSharp.Web.Middleware
         /// <summary>
         /// Gets or sets the length of the filename to use (minus the extension) when storing images in the image cache.
         /// </summary>
-        public uint CachedNameLength { get; set; } = 12;
+        public byte CachedNameLength { get; set; } = 12;
 
         /// <summary>
         /// Gets or sets the additional validation method.

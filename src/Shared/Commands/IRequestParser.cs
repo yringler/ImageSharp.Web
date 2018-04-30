@@ -2,7 +2,11 @@
 // Licensed under the Apache License, Version 2.0.
 
 using System.Collections.Generic;
+#if COMPAT
+using System.Web;
+#else
 using Microsoft.AspNetCore.Http;
+#endif
 
 namespace SixLabors.ImageSharp.Web.Commands
 {

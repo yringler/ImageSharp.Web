@@ -25,7 +25,7 @@ namespace ImageSharp.Web.Benchmarks
         }
 
         /// <inheritdoc/>
-        public string Create(string value, uint length)
+        public string Create(string value, byte length)
         {
             if (length.CompareTo(2) < 0 || length.CompareTo(64) > 0)
             {
@@ -35,10 +35,9 @@ namespace ImageSharp.Web.Benchmarks
             using (var hashAlgorithm = SHA256.Create())
             {
                 // Concatenate the hash bytes into one long string.
-                int len = (int)length;
                 byte[] hash = hashAlgorithm.ComputeHash(Encoding.ASCII.GetBytes(value));
-                var sb = new StringBuilder(len);
-                for (int i = 0; i < len / 2; i++)
+                var sb = new StringBuilder(length);
+                for (int i = 0; i < length / 2; i++)
                 {
                     sb.Append(hash[i].ToString("X2"));
                 }

@@ -24,8 +24,8 @@ namespace SixLabors.ImageSharp.Web.Helpers
         /// <returns>The <see cref="string"/></returns>
         public static string GetContentType(Configuration configuration, string key)
         {
-            string extension = Path.GetExtension(key).Replace(".", string.Empty);
-            return configuration.ImageFormats.First(f => f.FileExtensions.Contains(extension)).DefaultMimeType;
+            // TODO: PERF: Replace lambda and loop
+            return configuration.ImageFormats.First(f => f.FileExtensions.Contains(Path.GetExtension(key).Replace(".", string.Empty))).DefaultMimeType;
         }
 
         /// <summary>
@@ -74,6 +74,7 @@ namespace SixLabors.ImageSharp.Web.Helpers
         /// <returns>The <see cref="string"/></returns>
         public static string GetExtensionOrDefault(Configuration configuration, string uri)
         {
+            // TODO: PERF: Check performance of First(), we may be better off using index-able types in ImageSharp
             return GetExtension(configuration, uri) ?? configuration.ImageFormats.First().FileExtensions.First();
         }
     }

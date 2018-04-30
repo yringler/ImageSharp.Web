@@ -4,7 +4,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+#if COMPAT
+using System.Web;
+#else
 using Microsoft.AspNetCore.Http;
+#endif
 using SixLabors.ImageSharp.Web.Memory;
 
 // TODO: Do we add cleanup to this? Scalable caches probably shouldn't do so.

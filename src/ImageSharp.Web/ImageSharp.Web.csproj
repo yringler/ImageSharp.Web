@@ -29,7 +29,7 @@
     <DebugType Condition="$(codecov) == ''">portable</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Shared\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
+    <Compile Include="..\Shared\**\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.4'">

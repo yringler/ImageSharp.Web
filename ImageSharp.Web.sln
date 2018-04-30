@@ -24,6 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9E574A07-F879-4811-9C41-5CBDC6BAFDB7}"
 	ProjectSection(SolutionItems) = preProject
 		src\Shared\AssemblyInfo.Common.cs = src\Shared\AssemblyInfo.Common.cs
+		src\Shared\FormattedImage.cs = src\Shared\FormattedImage.cs
+		src\Shared\Guard.cs = src\Shared\Guard.cs
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageSharp.Web", "src\ImageSharp.Web\ImageSharp.Web.csproj", "{2F1B36E2-5D92-4442-B816-D2A978246435}"
@@ -34,7 +36,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{EA41
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageSharp.Web.Sample", "samples\ImageSharp.Web.Sample\ImageSharp.Web.Sample.csproj", "{BD73DBBD-6859-44C2-99FC-84148A6239A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSharp.Web.Benchmarks", "tests\ImageSharp.Web.Benchmarks\ImageSharp.Web.Benchmarks.csproj", "{0B15E490-7821-42DF-86A5-4DEAE921DE59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageSharp.Web.Benchmarks", "tests\ImageSharp.Web.Benchmarks\ImageSharp.Web.Benchmarks.csproj", "{0B15E490-7821-42DF-86A5-4DEAE921DE59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSharp.Web.Compat", "src\ImageSharp.Web.Compat\ImageSharp.Web.Compat.csproj", "{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{15114337-BA87-4C1E-814D-D2B9EEB49B87}"
+	ProjectSection(SolutionItems) = preProject
+		src\Shared\Commands\CommandDescriptor.cs = src\Shared\Commands\CommandDescriptor.cs
+		src\Shared\Commands\CommandParser.cs = src\Shared\Commands\CommandParser.cs
+		src\Shared\Commands\ComparableExtensions.cs = src\Shared\Commands\ComparableExtensions.cs
+		src\Shared\Commands\DictionaryExtensions.cs = src\Shared\Commands\DictionaryExtensions.cs
+		src\Shared\Commands\IRequestParser.cs = src\Shared\Commands\IRequestParser.cs
+		src\Shared\Commands\QueryCollectionRequestParser.cs = src\Shared\Commands\QueryCollectionRequestParser.cs
+		src\Shared\Commands\TypeConstants.cs = src\Shared\Commands\TypeConstants.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Converters", "Converters", "{7B375FCE-3DE7-4379-9EE1-2B20D9FC15E0}"
+	ProjectSection(SolutionItems) = preProject
+		src\Shared\Commands\Converters\ArrayConverter{T}.cs = src\Shared\Commands\Converters\ArrayConverter{T}.cs
+		src\Shared\Commands\Converters\CommandConverter.cs = src\Shared\Commands\Converters\CommandConverter.cs
+		src\Shared\Commands\Converters\EnumConverter.cs = src\Shared\Commands\Converters\EnumConverter.cs
+		src\Shared\Commands\Converters\ICommandConverter.cs = src\Shared\Commands\Converters\ICommandConverter.cs
+		src\Shared\Commands\Converters\IntegralNumberConverter.cs = src\Shared\Commands\Converters\IntegralNumberConverter.cs
+		src\Shared\Commands\Converters\ListConverter{T}.cs = src\Shared\Commands\Converters\ListConverter{T}.cs
+		src\Shared\Commands\Converters\Rgba32Converter.cs = src\Shared\Commands\Converters\Rgba32Converter.cs
+		src\Shared\Commands\Converters\SimpleCommandConverter{T}.cs = src\Shared\Commands\Converters\SimpleCommandConverter{T}.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,6 +121,18 @@ Global
 		{0B15E490-7821-42DF-86A5-4DEAE921DE59}.Release|x64.Build.0 = Release|Any CPU
 		{0B15E490-7821-42DF-86A5-4DEAE921DE59}.Release|x86.ActiveCfg = Release|Any CPU
 		{0B15E490-7821-42DF-86A5-4DEAE921DE59}.Release|x86.Build.0 = Release|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Debug|x64.Build.0 = Debug|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Debug|x86.Build.0 = Debug|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Release|x64.ActiveCfg = Release|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Release|x64.Build.0 = Release|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Release|x86.ActiveCfg = Release|Any CPU
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +143,9 @@ Global
 		{8864C96C-94AA-454D-BAF5-779216C3745A} = {56801022-D71A-4FBE-BC5B-CBA08E2284EC}
 		{BD73DBBD-6859-44C2-99FC-84148A6239A5} = {EA4178FC-11E3-496A-B630-0680B35E0AF8}
 		{0B15E490-7821-42DF-86A5-4DEAE921DE59} = {56801022-D71A-4FBE-BC5B-CBA08E2284EC}
+		{6816E1C3-71DB-4185-9BEB-9A359E9E22A7} = {815C0625-CD3D-440F-9F80-2D83856AB7AE}
+		{15114337-BA87-4C1E-814D-D2B9EEB49B87} = {9E574A07-F879-4811-9C41-5CBDC6BAFDB7}
+		{7B375FCE-3DE7-4379-9EE1-2B20D9FC15E0} = {15114337-BA87-4C1E-814D-D2B9EEB49B87}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C5B38B65-A19E-4359-859C-5B2205429BD1}
