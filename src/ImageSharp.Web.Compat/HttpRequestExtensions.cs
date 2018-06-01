@@ -7,9 +7,9 @@ using System.Web;
 namespace SixLabors.ImageSharp.Web
 {
     /// <summary>
-    /// Extension methods for commonly required types.
+    /// Extension methods for <see cref="HttpRequest"/>.
     /// </summary>
-    public static class CommonExtensions
+    public static class HttpRequestExtensions
     {
         /// <summary>
         /// Returns the combined components of the request URL in a fully un-escaped form (except for the QueryString)

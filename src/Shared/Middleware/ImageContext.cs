@@ -3,13 +3,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+#if COMPAT
+using System.Net.Http.Headers;
+using System.Web;
+#else
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.Net.Http.Headers;
+#endif
 using SixLabors.ImageSharp.Web.Memory;
 
 namespace SixLabors.ImageSharp.Web.Middleware
@@ -124,7 +130,11 @@ namespace SixLabors.ImageSharp.Web.Middleware
         /// <returns>THe <see cref="bool"/></returns>
         public bool IsHeadRequest()
         {
+#if COMPAT
+            return string.Equals("HEAD", this.request.HttpMethod, StringComparison.OrdinalIgnoreCase);
+#else
             return string.Equals("HEAD", this.request.Method, StringComparison.OrdinalIgnoreCase);
+#endif
         }
 
         /// <summary>
@@ -136,8 +146,6 @@ namespace SixLabors.ImageSharp.Web.Middleware
         public Task SendStatusAsync(int statusCode, string contentType)
         {
             this.ApplyResponseHeaders(statusCode, contentType);
-
-            // this.logger.LogHandled(statusCode, SubPath);
             return ResponseConstants.CompletedTask;
         }
 
@@ -151,12 +159,17 @@ namespace SixLabors.ImageSharp.Web.Middleware
         public async Task SendAsync(string contentType, IByteBuffer buffer, long length)
         {
             this.ApplyResponseHeaders(ResponseConstants.Status200Ok, contentType);
+#if COMPAT
+            Stream outStream = this.response.OutputStream;
+#else
+            Stream outStream = this.response.Body;
+#endif
 
             // We don't need to directly cancel this, if the client disconnects it will fail silently.
-            await this.response.Body.WriteAsync(buffer.Array, 0, (int)length, CancellationToken.None);
-            if (this.response.Body.CanSeek)
+            await outStream.WriteAsync(buffer.Array, 0, (int)length, CancellationToken.None);
+            if (outStream.CanSeek)
             {
-                this.response.Body.Position = 0;
+                outStream.Position = 0;
             }
         }
 
@@ -203,7 +216,11 @@ namespace SixLabors.ImageSharp.Web.Middleware
             if (statusCode == ResponseConstants.Status200Ok)
             {
                 // This header is only returned here for 200. It is not returned for 304, and 412
+#if COMPAT
+                this.responseHeaders.ContentLength = this.fileLength;
+#else
                 this.response.ContentLength = this.fileLength;
+#endif
             }
         }
 

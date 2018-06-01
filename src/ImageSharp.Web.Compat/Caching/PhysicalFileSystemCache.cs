@@ -182,7 +182,7 @@ namespace SixLabors.ImageSharp.Web.Caching
                 }
                 catch (HttpException)
                 {
-                    // need to user our own logic
+                    // Need to use our own logic
                     return path.Replace("~/", HttpRuntime.AppDomainAppPath).Replace("/", "\\");
                 }
             }

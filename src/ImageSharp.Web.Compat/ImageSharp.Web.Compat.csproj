@@ -36,15 +36,6 @@
     <DocumentationFile>bin\Release\ImageSharp.Web.Compat.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNetCore.WebUtilities.2.0.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Net.Http.Headers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Net.Http.Headers.2.0.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
@@ -67,7 +58,6 @@
       <HintPath>..\..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Core" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -130,9 +120,6 @@
       <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Text.Encodings.Web.4.4.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -145,136 +132,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shared\AssemblyInfo.Common.cs" />
-    <Compile Include="..\Shared\Caching\AsyncKeyLock.cs">
-      <Link>Caching\AsyncKeyLock.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Caching\CachedInfo.cs">
-      <Link>Caching\CachedInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Caching\CacheHash.cs">
-      <Link>Caching\CacheHash.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Caching\Doorman.cs">
-      <Link>Caching\Doorman.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Caching\DoormanPool.cs">
-      <Link>Caching\DoormanPool.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Caching\IAsyncKeyLock.cs">
-      <Link>Caching\IAsyncKeyLock.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Caching\ICacheHash.cs">
-      <Link>Caching\ICacheHash.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Caching\IImageCache.cs">
-      <Link>Caching\IImageCache.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\CommandDescriptor.cs">
-      <Link>Commands\CommandDescriptor.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\CommandParser.cs">
-      <Link>Commands\CommandParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\ComparableExtensions.cs">
-      <Link>Commands\ComparableExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\Converters\ArrayConverter{T}.cs">
-      <Link>Commands\Converters\ArrayConverter{T}.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\Converters\CommandConverter.cs">
-      <Link>Commands\Converters\CommandConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\Converters\EnumConverter.cs">
-      <Link>Commands\Converters\EnumConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\Converters\ICommandConverter.cs">
-      <Link>Commands\Converters\ICommandConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\Converters\IntegralNumberConverter.cs">
-      <Link>Commands\Converters\IntegralNumberConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\Converters\ListConverter{T}.cs">
-      <Link>Commands\Converters\ListConverter{T}.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\Converters\Rgba32Converter.cs">
-      <Link>Commands\Converters\Rgba32Converter.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\Converters\SimpleCommandConverter{T}.cs">
-      <Link>Commands\Converters\SimpleCommandConverter{T}.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\DictionaryExtensions.cs">
-      <Link>Commands\DictionaryExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\IRequestParser.cs">
-      <Link>Commands\IRequestParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\QueryCollectionRequestParser.cs">
-      <Link>Commands\QueryCollectionRequestParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Commands\TypeConstants.cs">
-      <Link>Commands\TypeConstants.cs</Link>
-    </Compile>
     <AdditionalFiles Include="..\..\stylecop.json" />
-    <Compile Include="..\Shared\FormattedImage.cs">
-      <Link>FormattedImage.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Guard.cs">
-      <Link>Guard.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Helpers\FormatHelpers.cs">
-      <Link>Helpers\FormatHelpers.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Memory\IBufferManager.cs">
-      <Link>Memory\IBufferManager.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Memory\IByteBuffer.cs">
-      <Link>Memory\IByteBuffer.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Memory\PooledBufferManager.cs">
-      <Link>Memory\PooledBufferManager.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Memory\PooledByteBuffer.cs">
-      <Link>Memory\PooledByteBuffer.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Middleware\ImageContext.cs">
-      <Link>Middleware\ImageContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Middleware\ImageProcessingContext.cs">
-      <Link>Middleware\ImageProcessingContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Middleware\ImageSharpMiddlewareOptions.cs">
-      <Link>Middleware\ImageSharpMiddlewareOptions.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Middleware\ImageValidationContext.cs">
-      <Link>Middleware\ImageValidationContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Middleware\ResponseConstants.cs">
-      <Link>Middleware\ResponseConstants.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Processors\BackgroundColorWebProcessor.cs">
-      <Link>Processors\BackgroundColorWebProcessor.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Processors\FormatWebProcessor.cs">
-      <Link>Processors\FormatWebProcessor.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Processors\IImageWebProcessor.cs">
-      <Link>Processors\IImageWebProcessor.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Processors\ResizeWebProcessor.cs">
-      <Link>Processors\ResizeWebProcessor.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Processors\WebProcessingExtensions.cs">
-      <Link>Processors\WebProcessingExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Resolvers\IImageResolver.cs">
-      <Link>Resolvers\IImageResolver.cs</Link>
-    </Compile>
+    <Compile Include="..\Shared\**\*.cs" Link="\%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Include="Caching\PhysicalFileSystemCache.cs" />
-    <Compile Include="CommonExtensions.cs" />
+    <Compile Include="DateTimeFormatter.cs" />
+    <Compile Include="HttpResponseExtensions.cs" />
+    <Compile Include="HttpRequestExtensions.cs" />
     <Compile Include="DependencyInjection\HttpApplicationExtensions.cs" />
     <Compile Include="DependencyInjection\ImageSharpCoreBuilder.cs" />
+    <Compile Include="HeaderNames.cs" />
     <Compile Include="Middleware\ImageSharpMiddleware.cs" />
+    <Compile Include="ResponseHeaders.cs" />
     <Compile Include="Resolvers\PhysicalFileSystemResolver.cs" />
   </ItemGroup>
   <ItemGroup>
