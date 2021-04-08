@@ -4,17 +4,20 @@
     <AssemblyTitle>SixLabors.ImageSharp.Web</AssemblyTitle>
     <AssemblyName>SixLabors.ImageSharp.Web</AssemblyName>
     <RootNamespace>SixLabors.ImageSharp.Web</RootNamespace>
-    <PackageId>SixLabors.ImageSharp.Web</PackageId>
+    <PackageId>Yehuda.SixLabors.ImageSharp.Web</PackageId>
     <PackageIcon>sixlabors.imagesharp.web.128.png</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <RepositoryUrl Condition="'$(RepositoryUrl)' == ''">https://github.com/SixLabors/ImageSharp.Web/</RepositoryUrl>
+    <RepositoryUrl Condition="'$(RepositoryUrl)' == ''">https://github.com/yringler/ImageSharp.Web</RepositoryUrl>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageTags>Image Middleware Resize Crop Gif Jpg Jpeg Bitmap Png Core Cache ASP</PackageTags>
-    <Description>ImageSharp Middleware for serving images via a url based API.</Description>
+    <Description>A fork of ImageSharp Middleware for serving images via a url based API.
+Simply adds an option not to vary cache based on host.
+Temporary, until https://github.com/SixLabors/ImageSharp.Web/pull/147 is merged in.</Description>
   </PropertyGroup>
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;netcoreapp2.1</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
